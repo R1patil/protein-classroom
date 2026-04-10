@@ -1,11 +1,9 @@
+const http = require('http');
 const fs = require('fs/promises');
 const path = require('path');
 
-// NOTE:
-// - Local dev server is `dev-server.js`.
-// - This file is kept as a serverless-compatible handler for platforms like Vercel,
-//   which do not run long-lived `server.listen(...)` processes.
-
+const PORT = Number(process.env.PORT || 4173);
+const HOST = '127.0.0.1';
 const ROOT = __dirname;
 
 const MIME_TYPES = {
@@ -21,7 +19,7 @@ const MIME_TYPES = {
 };
 
 function resolvePath(requestUrl) {
-  const { pathname } = new URL(requestUrl, 'http://localhost');
+  const { pathname } = new URL(requestUrl, `http://${HOST}:${PORT}`);
   const safePath = pathname === '/' ? '/index.html' : pathname;
   const targetPath = path.normalize(path.join(ROOT, safePath));
 
@@ -42,14 +40,16 @@ async function sendFile(filePath, response) {
   response.end(body);
 }
 
-module.exports = async (request, response) => {
+async function handler(request, response) {
   try {
     const filePath = resolvePath(request.url || '/');
+
     if (!filePath) {
       response.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' });
       response.end('Forbidden');
       return;
     }
+
     await sendFile(filePath, response);
   } catch (error) {
     if (error && error.code === 'ENOENT') {
@@ -57,7 +57,18 @@ module.exports = async (request, response) => {
       response.end('Not found');
       return;
     }
+
     response.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
     response.end('Server error');
   }
-};
+}
+
+const server = http.createServer(handler);
+
+if (require.main === module) {
+  server.listen(PORT, HOST, () => {
+    console.log(`Protein Classroom app running at http://${HOST}:${PORT}`);
+  });
+}
+
+module.exports = server;

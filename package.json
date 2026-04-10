@@ -4,7 +4,8 @@
   "private": true,
   "description": "3D AlphaFold classroom app for MBBS and BAMS students",
   "scripts": {
-    "start": "node server.js"
+    "build": "node -e \"console.log('static build: no-op')\"",
+    "start": "node dev-server.js"
   },
   "engines": {
     "node": ">=18"
