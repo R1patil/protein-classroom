@@ -1,0 +1,12 @@
+{
+  "name": "protein-classroom-3d",
+  "version": "0.1.0",
+  "private": true,
+  "description": "3D AlphaFold classroom app for MBBS and BAMS students",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

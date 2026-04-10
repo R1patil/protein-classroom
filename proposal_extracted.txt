@@ -1,0 +1,500 @@
+===== PAGE 1 =====
+Project  Proposal:  AlphaFold-Powered  
+Educational
+ 
+App
+ 
+for
+ 
+MBBS
+ 
+&
+ 
+BAMS
+ 1.  Vision  Statement  To  create  an  interactive,  3D  educational  platform  that  bridges  modern  structural  biology  with  
+both
+ 
+Western
+ 
+(MBBS)
+ 
+and
+ 
+Ayurvedic
+ 
+(BAMS)
+ 
+medical
+ 
+curricula,
+ 
+helping
+ 
+students
+ 
+visualize
+ 
+the
+ 
+molecular
+ 
+basis
+ 
+of
+ 
+health
+ 
+and
+ 
+disease.
+ 
+2.  Key  Features  for  BAMS  (Ayurveda)  ●  Herb-to-Protein  Engine:  Search  by  Ayurvedic  herb  name  (e.g.,  Ashwagandha )  to  
+see
+ 
+its
+ 
+active
+ 
+compounds
+ 
+and
+ 
+their
+ 
+predicted
+ 
+human
+ 
+protein
+ 
+targets.
+ ●  Pancha  Mahabhuta  Overlays:  A  toggle  to  view  protein  surfaces  through  Ayurvedic  
+properties:
+ ○  Prithvi  (Earth):  High-stability  hydrophobic  regions.  ○  Tejas  (Fire):  High-reactivity  charged/active  sites.  ●  Prakriti  vs.  Vikriti  Visualization:  Side-by-side  comparisons  of  "Balanced"  structures  
+vs.
+ 
+"Mutated"
+ 
+structures
+ 
+(using
+ 
+AlphaMissense
+ 
+data)
+ 
+to
+ 
+represent
+ 
+tissue
+ 
+corruption
+ 
+(
+Dhatu
+ 
+Dushti
+).
+ ●  Rasayana  Simulation:  Visualizing  how  rejuvenation  therapies  affect  the  structural  
+integrity
+ 
+of
+ 
+antioxidant
+ 
+enzymes
+ 
+like
+ 
+Superoxide
+ 
+Dismutase
+.
+ 
+3.  Key  Features  for  MBBS  (Modern  Medicine)  ●  Pharmacology  Docking:  Visualizing  where  common  drugs  (e.g.,  Ibuprofen,  ACE  
+inhibitors)
+ 
+bind
+ 
+to
+ 
+specific
+ 
+human
+ 
+proteins.
+ ●  Clinical  Pathology  Links:  Direct  mapping  of  protein  structural  failures  to  specific  
+board-exam
+ 
+diseases
+ 
+(e.g.,
+ 
+Sickle
+ 
+Cell
+ 
+Anemia,
+ 
+Cystic
+ 
+Fibrosis).
+ ●  Exam  Mode:  Interactive  quizzes  where  students  must  identify  active  binding  sites  or  
+structural
+ 
+motifs
+ 
+on
+ 
+a
+ 
+3D
+ 
+model.
+ 
+4.  Implementation  Roadmap  
+Phase  Task  Data  Source  
+Phase  1  Core  3D  Viewer  AlphaFold  DB  API 
+Phase  2  Herb-Target  Mapping  Ayurvedic  Pharmacopoeia  +  UniProt  IDs  
+
+===== PAGE 2 =====
+Phase  3  Clinical  Annotations  MBBS  Textbooks  + AlphaMissense 
+Phase  4  Cross-Platform  Beta  React  Native  /  Next.js  
+ 
+Suggested  Next  Steps  for  the  Team  1.  Select  Pilot  Herbs:  Start  with  3  high-research  herbs  ( Turmeric,  Brahmi,  Neem ).  2.  Assign  Medical  Writers:  Match  each  protein  structure  with  2  MCQs  and  a  clinical  
+brief.
+ 3.  Prototype:  Use  3Dmol.js  to  pull  the  Hemoglobin  structure  from  AlphaFold  DB  as  a  
+proof
+ 
+of
+ 
+concept.
+ 
+This  is  a  great  step  toward  organizing  your  team.  To  make  your  Google  Doc  truly  
+"developer-ready,"
+ 
+I
+ 
+have
+ 
+gathered
+ 
+the
+ 
+specific
+ 
+technical
+ 
+IDs
+ 
+(
+UniProt
+ 
+accessions
+)
+ 
+for
+ 
+the
+ 
+three
+ 
+pilot
+ 
+herbs
+ 
+we
+ 
+discussed.
+ 
+You  can  copy  and  paste  this  "Research  Data"  section  directly  into  your  document  so  your  developers  know  exactly  which  structures  to  pull  from  the AlphaFold  Database.  
+ 
+5.  Pilot  Herb  Research  Data  (For  Beta  Version)  
+To  build  the  first  prototype,  we  will  map  these  three  herbs  to  their  primary  human  protein  
+targets.
+ 
+These
+ 
+proteins
+ 
+are
+ 
+all
+ 
+available
+ 
+with
+ 
+high-confidence
+ 
+models
+ 
+in
+ 
+the
+ 
+AlphaFold
+ 
+DB.
+ 
+A.  Turmeric  (Haridra)  
+●  Active  Compound:  Curcumin  ●  Target  Protein:  NF-kappa-B  (Nuclear  factor  NF-kappa-B  p65  subunit)  ●  UniProt  ID:  Q04206  ●  Clinical  Significance:  This  is  the  primary  "switch"  for  inflammation.  Showing  
+Curcumin
+ 
+interacting
+ 
+here
+ 
+explains
+ 
+why
+ 
+Turmeric
+ 
+is
+ 
+used
+ 
+for
+ 
+Shotha
+ 
+(inflammation).
+ 
+B.  Brahmi  (Bacopa  monnieri)  
+●  Active  Compound:  Bacoside  A  ●  Target  Protein:  Acetylcholinesterase  (AChE)  ●  UniProt  ID:  P22303  ●  Clinical  Significance:  This  protein  breaks  down  neurotransmitters.  Showing  how  
+Brahmi
+ 
+interacts
+ 
+here
+ 
+explains
+ 
+its
+ 
+role
+ 
+as
+ 
+a
+ 
+Medhya
+ 
+Rasayana
+ 
+(brain
+ 
+tonic/memory
+ 
+enhancer).
+ 
+C.  Neem  (Nimba)  
+
+===== PAGE 3 =====
+●  Active  Compound:  Azadirachtin  /  Nimbolide  ●  Target  Protein:  Glycogen  Synthase  Kinase-3  beta  (GSK3B)  ●  UniProt  ID:  P49841  ●  Clinical  Significance:  Involved  in  cell  signaling  and  glucose  metabolism.  This  helps  
+explain
+ 
+Neem’s
+ 
+traditional
+ 
+use
+ 
+in
+ 
+managing
+ 
+Prameha
+ 
+(diabetes)
+ 
+and
+ 
+skin
+ 
+disorders.
+ 
+ 
+6.  Technical  Access  Instructions  for  Developers  
+1.  API  Endpoint:  To  pull  the  3D  files  automatically,  use  the AlphaFold  DB  API formatted  as:  https://alphafold.ebi.ac.uk/api/prediction/[UniProt_ID]  2.  3D  Rendering:  Use  the 3Dmol.js library  to  embed  the  viewer  into  the  app  frontend.  3.  Source  Code:  If  we  need  to  fold  custom  compounds  not  in  the  database,  refer  to  the AlphaFold  2  Open  Source  Code.  
+ 
+Suggested  Team  Roles  
+●  BAMS/MD  Content  Lead:  Responsible  for  the  "Medical  Briefs"  and  MCQ  questions  
+for
+ 
+each
+ 
+protein.
+ ●  Full-Stack  Developer:  Responsible  for  the  3D  viewer  integration  and  API  calls.  ●  UI/UX  Designer:  Focused  on  making  the  3D  interface  easy  for  students  to  navigate  
+on
+ 
+mobile
+ 
+devices.
+ 
+Executive  Summary:  The  Ved-Structural  
+Biology
+ 
+Platform
+ 
+Project  Overview  
+The  Ved-Structural  Biology  Platform  is  a  first-of-its-kind  educational  tool  designed  to  modernize  medical  education  for  MBBS  and  BAMS  students.  By  leveraging AlphaFold  2 and AlphaFold  3 technology,  the  platform  converts  abstract  biological  sequences  into  interactive  3D  models,  allowing  students  to  visualize  exactly  how  drugs  and  Ayurvedic  
+compounds
+ 
+interact
+ 
+with
+ 
+the
+ 
+human
+ 
+body.
+ 
+The  Problem  
+●  Medical  Students  (MBBS):  Often  struggle  to  visualize  complex  pharmacological  
+interactions,
+ 
+relying
+ 
+on
+ 
+2D
+ 
+textbook
+ 
+diagrams
+ 
+that
+ 
+do
+ 
+not
+ 
+show
+ 
+the
+ 
+"lock-and-key"
+ 
+mechanism
+ 
+of
+ 
+drug
+ 
+binding.
+ 
+
+===== PAGE 4 =====
+●  Ayurvedic  Students  (BAMS):  Lack  a  bridge  between  traditional  Dravyaguna  
+(pharmacology)
+ 
+and
+ 
+modern
+ 
+molecular
+ 
+biology,
+ 
+making
+ 
+it
+ 
+difficult
+ 
+to
+ 
+explain
+ 
+the
+ 
+scientific
+ 
+mechanism
+ 
+of
+ 
+herbal
+ 
+treatments
+ 
+in
+ 
+a
+ 
+modern
+ 
+clinical
+ 
+setting.
+ 
+The  Solution  
+We  are  building  a  web-based  "Educational  Layer"  on  top  of  the AlphaFold  Protein  Structure  Database.  Our  platform  will  provide:  
+1.  3D  Visualization:  Real-time  3D  rendering  of  human  proteins  using  3Dmol.js .  2.  Herb-Target  Mapping:  A  unique  database  linking  specific  Ayurvedic  active  
+compounds
+ 
+(like
+ 
+Curcumin
+ 
+or
+ 
+Bacosides)
+ 
+to
+ 
+their
+ 
+human
+ 
+protein
+ 
+targets.
+ 3.  Clinical  Context:  Simplified  medical  briefs  and  exam-style  MCQs  that  translate  
+complex
+ 
+structural
+ 
+data
+ 
+into
+ 
+high-yield
+ 
+study
+ 
+material.
+ 
+Strategic  Value  
+●  For  BAMS:  It  validates  ancient  wisdom  using  Nobel  Prize-winning  AI  technology,  
+providing
+ 
+a
+ 
+"scientific
+ 
+language"
+ 
+for
+ 
+Ayurvedic
+ 
+pharmacology.
+ ●  For  MBBS:  It  provides  a  superior  study  tool  for  Biochemistry  and  Pharmacology,  
+increasing
+ 
+student
+ 
+engagement
+ 
+and
+ 
+retention.
+ ●  Scalability:  The  project  utilizes Open  Source  code and CC-BY-4.0  licensed  data,  allowing  for  commercial  growth  and  global  reach.  
+Immediate  Goals  (Next  30  Days)  
+●  Finalize  the  "Pilot  Trio"  (Turmeric,  Brahmi,  Neem)  3D  modules.  ●  Develop  the  first  interactive  frontend  prototype  using  the AlphaFold  DB  API.  ●  Draft  50  "High-Yield"  clinical  briefs  for  core  human  proteins.  
+ 

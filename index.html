@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Protein Classroom 3D</title>
+    <meta
+      name="description"
+      content="An AlphaFold-powered 3D protein learning app for MBBS and BAMS students."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <div class="noise"></div>
+
+    <main class="shell">
+      <section class="hero panel">
+        <div class="hero-copy">
+          <p class="eyebrow">AlphaFold classroom studio</p>
+          <h1>Protein Classroom 3D</h1>
+          <p class="lede">
+            Explore predicted protein structures, connect them to MBBS clinical concepts,
+            and map each pathway to a thoughtful BAMS-facing teaching brief.
+          </p>
+          <div class="hero-actions">
+            <button id="loadDemoBtn" class="button secondary" type="button">Load Demo Protein</button>
+            <a
+              id="entryLink"
+              class="inline-link"
+              href="https://alphafold.ebi.ac.uk/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open AlphaFold entry
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-aside">
+          <div class="stat-card">
+            <span class="stat-label">Starter proteins</span>
+            <strong>3 curated teaching sets</strong>
+            <p>Insulin, hemoglobin beta, and serum albumin are preloaded for class demos.</p>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Teaching flow</span>
+            <strong>3D model + brief + prompt</strong>
+            <p>Use the built-in prompt lab to generate new educational briefs in Claude later.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="controls panel">
+        <div class="controls-head">
+          <div>
+            <p class="section-kicker">Select a protein</p>
+            <h2>Load a classroom model</h2>
+          </div>
+          <p class="muted">
+            Enter a UniProt accession from AlphaFold DB, or start with one of the curated presets.
+          </p>
+        </div>
+
+        <div class="preset-row" id="presetRow" aria-label="Preset proteins">
+          <button class="preset-chip is-active" data-preset="insulin" type="button">Human Insulin</button>
+          <button class="preset-chip" data-preset="hemoglobin" type="button">Hemoglobin Beta</button>
+          <button class="preset-chip" data-preset="albumin" type="button">Serum Albumin</button>
+        </div>
+
+        <form id="proteinForm" class="protein-form">
+          <label>
+            <span>Protein name</span>
+            <input
+              id="proteinName"
+              name="proteinName"
+              type="text"
+              placeholder="Human Insulin"
+              autocomplete="off"
+            />
+          </label>
+          <label>
+            <span>UniProt accession</span>
+            <input
+              id="proteinAccession"
+              name="proteinAccession"
+              type="text"
+              placeholder="P01308"
+              autocomplete="off"
+            />
+          </label>
+          <div class="form-actions">
+            <button class="button primary" type="submit">Load 3D Model</button>
+            <button class="button secondary" id="copyPromptBtn" type="button">Copy Prompt</button>
+            <button class="button secondary" id="copyJsonBtn" type="button">Copy JSON</button>
+          </div>
+        </form>
+
+        <p id="status" class="status">Preparing the insulin teaching set.</p>
+      </section>
+
+      <section class="workspace">
+        <article class="viewer-panel panel">
+          <div class="panel-head">
+            <div>
+              <p class="section-kicker">3D viewer</p>
+              <h2 id="viewerTitle">Human Insulin</h2>
+            </div>
+            <div class="viewer-actions">
+              <button id="resetViewBtn" class="button subtle" type="button">Reset View</button>
+            </div>
+          </div>
+
+          <div class="viewer-meta">
+            <p id="viewerSubtitle" class="viewer-subtitle">
+              Endocrine signal that lowers plasma glucose and coordinates anabolic metabolism.
+            </p>
+            <p id="viewerFocus" class="focus-note">
+              Focus: disulfide-stabilized receptor-binding surface.
+            </p>
+          </div>
+
+          <div id="viewer" class="viewer-canvas" aria-label="3D protein viewer"></div>
+
+          <div class="legend">
+            <span>Confidence shading</span>
+            <div class="legend-bar" aria-hidden="true"></div>
+            <div class="legend-scale">
+              <span>Low</span>
+              <span>High</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="study-panel panel">
+          <div class="tabs" role="tablist" aria-label="Study tools">
+            <button class="tab is-active" type="button" data-tab="brief" aria-selected="true">Study Brief</button>
+            <button class="tab" type="button" data-tab="prompt" aria-selected="false">Prompt Lab</button>
+            <button class="tab" type="button" data-tab="json" aria-selected="false">JSON View</button>
+          </div>
+
+          <div class="tab-panel is-active" data-panel="brief">
+            <div class="brief-header">
+              <p class="section-kicker">Educational brief</p>
+              <h2 id="briefTitle">Human Insulin</h2>
+            </div>
+            <div id="briefContent" class="brief-content"></div>
+          </div>
+
+          <div class="tab-panel" data-panel="prompt">
+            <div class="brief-header">
+              <p class="section-kicker">Prompt lab</p>
+              <h2>Generate a new brief in Claude</h2>
+            </div>
+            <p class="muted">
+              Use this prompt when you want a new protein-specific teaching brief beside the 3D viewer.
+            </p>
+            <textarea id="promptOutput" class="prompt-output" readonly></textarea>
+          </div>
+
+          <div class="tab-panel" data-panel="json">
+            <div class="brief-header">
+              <p class="section-kicker">App-ready data</p>
+              <h2>JSON-style sidebar content</h2>
+            </div>
+            <pre id="jsonOutput" class="json-output"></pre>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
